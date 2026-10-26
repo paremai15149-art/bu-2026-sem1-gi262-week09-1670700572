@@ -98,17 +98,45 @@ namespace Assignment
 
         #endregion
 
+
         #region Assignment
 
         public string ASN01_ReverseString(string str)
         {
-            throw new NotImplementedException();
+            Stack<char> stack = new Stack<char>();
+
+            foreach (char c in str)
+            {
+                stack.Push(c);
+            }
+
+            string reversed = "";
+
+            while (stack.Count > 0)
+            {
+                reversed += stack.Pop();
+            }
+
+            return reversed;
         }
 
         public bool ASN02_StackPalindrome(string str)
         {
+            Stack<char> stack = new Stack<char>();
 
-            throw new NotImplementedException();
+            foreach (char c in str)
+            {
+                stack.Push(c);
+            }
+
+            string reversed = "";
+
+            while (stack.Count > 0)
+            {
+                reversed += stack.Pop();
+            }
+
+            return str == reversed;
         }
 
         #endregion
@@ -117,9 +145,44 @@ namespace Assignment
 
         public bool EX01_ParenthesesChecker(string str)
         {
-            throw new NotImplementedException();
+            Stack<char> stack = new Stack<char>();
+
+            foreach (char c in str)
+            {
+                if (c == '(' || c == '[' || c == '{')
+                {
+                    stack.Push(c);
+                }
+                else if (c == ')' || c == ']' || c == '}')
+                {
+                    if (stack.Count == 0)
+                    {
+                        return false;
+                    }
+
+                    char opening = stack.Pop();
+
+                    if (c == ')' && opening != '(')
+                    {
+                        return false;
+                    }
+
+                    if (c == ']' && opening != '[')
+                    {
+                        return false;
+                    }
+
+                    if (c == '}' && opening != '{')
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return stack.Count == 0;
         }
 
         #endregion
+
     }
 }
